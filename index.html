@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VAE 錦鯉画像生成</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <div class="lang-switch">
+        <select id="languageSelect" onchange="changeLanguage()">
+            <option value="ja" selected>日本語</option>
+            <option value="zh">中文</option>
+            <option value="en">English</option>
+        </select>
+    </div>
+
+    <h1 data-i18n="pageTitle">錦鯉画像生成と評価</h1>
+
+    <div class="control-panel" id="controlPanel">
+        <div class="upload-group">
+            <label data-i18n="lblUploadImg">画像を選択:</label>
+            <input type="file" id="imageInput" accept="image/*">
+        </div>
+        <div class="upload-group">
+            <label data-i18n="lblUploadMask">マスクを選択:</label>
+            <input type="file" id="maskInput" accept="image/*">
+        </div>
+        <button onclick="handleUpload()" id="uploadBtn" data-i18n="btnUpload">実行</button>
+    </div>
+
+    <div style="text-align: center; margin-bottom: 20px;">
+        <p id="loading" data-i18n="txtProcessing" style="display:none; color: #0071e3; font-weight: bold; font-size: 18px;">処理中...</p>
+        <button onclick="resetApp()" id="resetBtn" data-i18n="btnReset" style="display:none; background-color: #34c759; margin: 0 auto;">もう一度</button>
+    </div>
+
+    <div class="display-area" id="displayArea">
+        <div class="grid-container">
+            <div class="column">
+                <div class="image-box">
+                    <h3 data-i18n="labelOriginal">入力画像</h3>
+                    <img id="previewImg" alt="Original Image">
+                </div>
+                <div class="image-box" id="inputMaskBox"> <h3 data-i18n="labelOrigMask">入力マスク</h3>
+                    <img id="previewMask" alt="Original Mask">
+                </div>
+            </div>
+
+            <div class="column">
+                <div class="image-box">
+                    <h3 data-i18n="labelRecon">生成画像</h3>
+                    <img id="reconImg" alt="Reconstruction Result">
+                </div>
+                <div class="image-box">
+                    <h3 data-i18n="labelMask">生成マスク</h3>
+                    <img id="maskImg" alt="Segmentation Mask">
+                </div>
+            </div>
+        </div>
+
+        <div class="bottom-row" id="bottomRow">
+            <div class="image-box highlight-box">
+                <h3 data-i18n="labelHighlight">差異ハイライト</h3>
+                <img id="highlightImg" alt="Difference Highlight">
+                <div class="score-display">
+                    <span data-i18n="labelScore">評価スコア: </span>
+                    <span id="scoreText" class="score-value">0.000</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>

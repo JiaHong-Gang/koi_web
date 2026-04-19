@@ -1,0 +1,101 @@
+body {
+    font-family: 'Helvetica Neue', Arial, 'Hiragino Kaku Gothic ProN', 'Microsoft YaHei', sans-serif;
+    max-width: 1000px; margin: 0 auto; padding: 20px;
+    background-color: #f5f5f7; color: #333; text-align: center;
+}
+.lang-switch { position: absolute; top: 20px; right: 20px; }
+.lang-switch select { padding: 8px 12px; border-radius: 6px; }
+h1 { margin-top: 60px; margin-bottom: 30px; }
+
+/* Enhanced upload panel */
+.control-panel {
+    background: white; padding: 30px; border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08); margin-bottom: 40px;
+    display: inline-block; width: 90%; max-width: 600px;
+}
+.upload-group {
+    margin-bottom: 15px; text-align: left; padding: 10px;
+    background: #f9f9f9; border-radius: 8px; border: 1px dashed #ccc;
+}
+.upload-group label { display: block; font-weight: bold; margin-bottom: 5px; color: #555;}
+input[type="file"] { font-size: 14px; }
+
+button {
+    background-color: #0071e3; color: white; padding: 12px 24px;
+    border: none; border-radius: 8px; cursor: pointer; font-size: 16px; transition: 0.2s;
+}
+button:hover { background-color: #0077ed; }
+
+/* --- Display area layout update --- */
+.display-area {
+    display: none; /* Flex by default, toggled by JavaScript */
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* Top section: two-column layout */
+.grid-container {
+    display: flex; justify-content: space-between; gap: 30px;
+}
+.column {
+    width: 48%; display: flex; flex-direction: column; gap: 20px;
+}
+
+/* Bottom section: difference image */
+.bottom-row {
+    display: flex; justify-content: center;
+}
+.highlight-box {
+    width: 60%; /* Centered and slightly wider */
+}
+
+.image-box {
+    background: white; padding: 20px; border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05); box-sizing: border-box;
+}
+.image-box h3 { margin: 0 0 12px 0; color: #555; border-bottom: 1px solid #eee; padding-bottom: 8px; }
+img {
+    max-width: 100%; height: auto; display: block; margin: 0 auto;
+    border-radius: 4px; min-height: 200px; background-color: #f0f0f0; object-fit: contain;
+}
+
+/* Score display area */
+.score-display {
+    margin-top: 20px; padding: 15px; background: #e8f5e9; 
+    border-radius: 8px; font-size: 18px; font-weight: bold; color: #2e7d32;
+    border: 1px solid #c8e6c9;
+}
+.score-value { font-size: 24px; color: #1b5e20; margin-left: 10px; }
+
+#loading { display: none; color: #0071e3; font-weight: bold; margin-top: 15px; animation: blink 1.5s infinite; }
+@keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+
+/* --- Mobile Responsive --- */
+/* When screen width is below 768px (mobile / tablet portrait) */
+@media (max-width: 768px) {
+    /* Make the container wrapping the two columns stack vertically */
+    .grid-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    /* Each column takes full width on mobile */
+    .column {
+        width: 100%;
+    }
+
+    /* The bottom highlight box also takes full width on mobile */
+    .highlight-box {
+        width: 100%;
+    }
+
+    .lang-switch {
+        position: static;
+        margin-bottom: 20px;
+        text-align: right;
+    }
+
+    h1 {
+        margin-top: 10px;
+    }
+}
